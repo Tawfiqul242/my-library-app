@@ -24,10 +24,11 @@
 
 <h2>📚 My Library</h2>
 
+<!-- ADD BOOK -->
 <form method="POST">
     <input name="title" placeholder="Book Title" required>
     <input name="author" placeholder="Author" required>
-    
+
     <select name="status">
         <option value="owned">Owned</option>
         <option value="reading">Reading</option>
@@ -36,11 +37,11 @@
     </select>
 
     <button type="submit">Add Book</button>
-
 </form>
 
+<!-- SEARCH -->
 <form method="GET">
-    <input name="search" placeholder="Search books..." value="{{ search }}">
+    <input name="search" placeholder="Search books..." value="{{ search or '' }}">
 
     <select name="status">
         <option value="">All</option>
@@ -55,12 +56,17 @@
 
 <hr>
 
+<!-- BOOK LIST -->
 {% for book in books %}
 <div class="book">
-    <b>{{ book.title }}</b><br>
-    {{ book.author }}<br>
-    Status: {{ book.status }}<br>
-    <a href="/delete/{{ loop.index0 }}">Delete</a>
+
+    <b>Title:</b> {{ book[1] }}<br>
+    <b>Author:</b> {{ book[2] }}<br>
+    <b>Status:</b> {{ book[3] }}<br>
+
+    <a href="/delete/{{ book[0] }}">Delete</a>
+    <a href="/edit/{{ book[0] }}">Edit Status</a>
+
 </div>
 {% endfor %}
 

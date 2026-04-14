@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Book</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<h2>Edit Book Status</h2>
+
+<p><b>Title:</b> {{ book[1] }}</p>
+<p><b>Author:</b> {{ book[2] }}</p>
+<p><b>Current Status:</b> {{ book[3] }}</p>
+
+<form method="POST">
+
+    <select name="status">
+        <option value="owned" {% if book[3] == "owned" %}selected{% endif %}>Owned</option>
+        <option value="reading" {% if book[3] == "reading" %}selected{% endif %}>Reading</option>
+        <option value="completed" {% if book[3] == "completed" %}selected{% endif %}>Completed</option>
+        <option value="wishlist" {% if book[3] == "wishlist" %}selected{% endif %}>Wishlist</option>
+    </select>
+
+    <button type="submit">Update</button>
+
+</form>
+
+<br>
+<a href="/">Back</a>
+
+</body>
+</html>
