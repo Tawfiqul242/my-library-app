@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Library</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial;
+            padding: 10px;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        .book {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<h2>📚 My Library</h2>
+
+<form method="POST">
+    <input name="title" placeholder="Book Title" required>
+    <input name="author" placeholder="Author" required>
+    
+    <select name="status">
+        <option value="owned">Owned</option>
+        <option value="reading">Reading</option>
+        <option value="completed">Completed</option>
+        <option value="wishlist">Wishlist</option>
+    </select>
+
+    <button type="submit">Add Book</button>
+
+</form>
+
+<form method="GET">
+    <input name="search" placeholder="Search books..." value="{{ search }}">
+
+    <select name="status">
+        <option value="">All</option>
+        <option value="owned">Owned</option>
+        <option value="reading">Reading</option>
+        <option value="completed">Completed</option>
+        <option value="wishlist">Wishlist</option>
+    </select>
+
+    <button type="submit">Search</button>
+</form>
+
+<hr>
+
+{% for book in books %}
+<div class="book">
+    <b>{{ book.title }}</b><br>
+    {{ book.author }}<br>
+    Status: {{ book.status }}<br>
+    <a href="/delete/{{ loop.index0 }}">Delete</a>
+</div>
+{% endfor %}
+
+</body>
+</html>
